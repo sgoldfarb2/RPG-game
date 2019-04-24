@@ -215,8 +215,3 @@ class Goblin(Character):
 
 
 
-sabrina = Hero()
-michael = Goblin()
-sabrina.alive(michael)
-sabrina.print_status()
-michael.print_status()
