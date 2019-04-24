@@ -27,6 +27,10 @@ class Hero:
       print("3. flee")
       print("> ", end=' ')
 
+  def print_status(self):
+    print("You have {} health and {} power.".format(self.health, self.power))
+
+
 
 
 
@@ -49,6 +53,9 @@ class Goblin:
       print("2. do nothing")
       print("3. flee")
       print("> ", end=' ')
+
+  def print_status:
+    print("The goblin has {} health and {} power.".format(self.health, self.power))
 
 
 
