@@ -16,6 +16,17 @@ class Hero:
   def attack(self, enemy):
     enemy.health = enemy.health - self.power
 
+  def alive(self):
+    while goblin.alive() and hero.alive():
+      print("You have {} health and {} power.".format(hero_health, hero_power))
+      print("The goblin has {} health and {} power.".format(goblin_health, goblin_power))
+      print()
+      print("What do you want to do?")
+      print("1. fight goblin")
+      print("2. do nothing")
+      print("3. flee")
+      print("> ", end=' ')
+
 
 
 
@@ -28,6 +39,16 @@ class Goblin:
   def attack(self, enemy):
     enemy.health = enemy.health - goblin.power
 
+  def alive(self):
+    while goblin.alive() and hero.alive():
+      print("You have {} health and {} power.".format(hero_health, hero_power))
+      print("The goblin has {} health and {} power.".format(goblin_health, goblin_power))
+      print()
+      print("What do you want to do?")
+      print("1. fight goblin")
+      print("2. do nothing")
+      print("3. flee")
+      print("> ", end=' ')
 
 
 
