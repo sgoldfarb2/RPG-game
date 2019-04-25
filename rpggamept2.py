@@ -34,11 +34,11 @@ class Character:
         4.Leave store
         """))
         if item_to_buy == 1:
-            buy_supertonic()
+            self.buy_supertonic()
         elif item_to_buy == 2:
-           buy_armor()
+           self.buy_armor()
         elif item_to_buy == 3:
-            buy_evade()
+            self.buy_evade()
         elif item_to_buy == 4:
            pass
       else:
@@ -102,6 +102,15 @@ class Hero(Character):
     elif enemy.type == 'Shadow':
       self.coins += 5
     print(f'Congrats! You now have {self.coins} coins!')
+
+  def buy_supertonic(self):
+    self.health = 10
+
+  def buy_armor(self):
+    self.armor_points = 2
+
+  def buy_evade(self):
+    self.evade_points += 2
 
 
 
@@ -189,14 +198,14 @@ class Store():
   #   elif item_to_buy == 4:
   #     pass
 
-  def buy_supertonic(self):
-    hero.health = 10
+  # def buy_supertonic(self):
+  #   hero.health = 10
 
-  def buy_armor(self):
-    hero.armor_points = 2
+  # def buy_armor(self):
+  #   hero.armor_points = 2
 
-  def buy_evade(self):
-    hero.evade_points += 2
+  # def buy_evade(self):
+  #   hero.evade_points += 2
 
 
 
@@ -207,4 +216,5 @@ barbara = Zombie()
 winnie = Shadow()
 sabrina.alive(michael)
 
-#entered into our store, need to be able to buy things now!
+#entered into our store, able to use the supertonic!
+
