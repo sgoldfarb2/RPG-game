@@ -26,7 +26,21 @@ class Character:
         print("Goodbye.")
         break
       elif raw_input == "4":
-        pass
+        item_to_buy = int(input("""
+        Which item would you like to buy?
+        1.Supertonic - restores you to full health
+        2.Armor - protects you 2 health points
+        3.Evade - helps you avoid an attack
+        4.Leave store
+        """))
+        if item_to_buy == 1:
+            buy_supertonic()
+        elif item_to_buy == 2:
+           buy_armor()
+        elif item_to_buy == 3:
+            buy_evade()
+        elif item_to_buy == 4:
+           pass
       else:
               print("Invalid input {}".format(raw_input))
 
@@ -159,13 +173,29 @@ class Store():
   def __init__(self):
     pass
 
-  def buy_supertonic(self, hero):
+  # def buy_items(self):
+  #   item_to_buy = int(input("""
+  #   Which item would you like to buy?
+  #   1.Supertonic - restores you to full health
+  #   2.Armor - protects you 2 health points
+  #   3.Evade - helps you avoid an attack
+  #   4.Leave store"""))
+  #   if item_to_buy == 1:
+  #     buy_supertonic()
+  #   elif item_to_buy == 2:
+  #     buy_armor()
+  #   elif item_to_buy == 3:
+  #     buy_evade()
+  #   elif item_to_buy == 4:
+  #     pass
+
+  def buy_supertonic(self):
     hero.health = 10
 
-  def buy_armor(self, hero):
+  def buy_armor(self):
     hero.armor_points = 2
 
-  def buy_evade(self, hero):
+  def buy_evade(self):
     hero.evade_points += 2
 
 
@@ -177,4 +207,4 @@ barbara = Zombie()
 winnie = Shadow()
 sabrina.alive(michael)
 
-#stuck at the store, not sure how to go in to the store!
+#entered into our store, need to be able to buy things now!
