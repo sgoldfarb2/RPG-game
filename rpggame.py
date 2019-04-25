@@ -68,4 +68,3 @@ class Goblin(Character):
   # def print_status(self):
   #   print("You have {} health and {} power.".format(self.health, self.power))
 
-
