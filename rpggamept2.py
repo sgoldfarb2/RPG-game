@@ -1,4 +1,7 @@
 import random
+
+
+
 class Character:
   def __init__(self):
     pass
@@ -6,13 +9,17 @@ class Character:
     while(self.health > 0 and enemy.health > 0 or enemy.type == 'Zombie'):
       print("You have {} health and {} power.".format(self.health, self.power))
       print("Your enemy has {} health and {} power.".format(enemy.health, enemy.power))
-      print()
-      print("What do you want to do?")
-      print("1. fight enemy")
-      print("2. do nothing")
-      print("3. flee")
-      print("4. Go to the store")
-      print("> ", end=' ')
+      print("""
+      -----------------------------
+      Welcome to the Python's lair
+      -----------------------------
+      What do you want to do?
+      1. Fight enemy
+      2. Do nothing
+      3. Flee and leave the game (CHICKEN!)
+      4. Go to the store
+      """)
+
       raw_input = input()
       if raw_input == "1":
               # Hero attacks goblin
@@ -27,11 +34,14 @@ class Character:
         break
       elif raw_input == "4":
         item_to_buy = int(input("""
+        ---------------------
+        Welcome to the store!
+        ---------------------
         Which item would you like to buy?
-        1.Supertonic - restores you to full health
-        2.Armor - protects you 2 health points
-        3.Evade - helps you avoid an attack
-        4.Leave store
+        1. Supertonic - restores you to full health
+        2. Armor - protects you 2 health points
+        3. Evade - helps you avoid an attack
+        4. Leave store
         """))
         if item_to_buy == 1:
             self.buy_supertonic()
@@ -77,9 +87,15 @@ class Hero(Character):
         print("The enemy is dead.")
       if enemy.health > 0:
               # Goblin attacks hero
-        enemy.attack(self)
+        if self.armor_points > 0:
+          self.health += self.armor_points
+          enemy.attack(self)
         # self.health -= enemy.power
-        print("Your enemy does {} damage to you.".format(enemy.power))
+          print("Your enemy does {} damage to you.".format(enemy.power))
+        else:
+          enemy.attack(self)
+        # self.health -= enemy.power
+          print("Your enemy does {} damage to you.".format(enemy.power))
       if self.health <= 0:
           print("You are dead.")
     else:
@@ -88,6 +104,9 @@ class Hero(Character):
       if enemy.health <= 0:
         print("Your enemy is dead.")
         self.collect_bounty(enemy)
+        # continue = input('Continue? Y/N: ')
+        # if continue == 'Y':
+
       if enemy.health > 0:
               # Goblin attacks hero
         enemy.attack(self)
@@ -104,13 +123,31 @@ class Hero(Character):
     print(f'Congrats! You now have {self.coins} coins!')
 
   def buy_supertonic(self):
-    self.health = 10
+    if self.coins >= 2:
+      self.health = 10
+      self.coins -= 2
+      print(f'You still have {self.coins} coin(s)')
+    else:
+      print(f'Sorry, you don\'t have enough coins, you only have {self.coins} left!')
 
   def buy_armor(self):
-    self.armor_points = 2
+    if self.coins >= 2:
+      self.armor_points = 2
+      print(f'You have {self.armor_points} armor points')
+      self.coins -= 2
+      print(f'You still have {self.coins} coin(s)')
+    else:
+      print(f'Sorry, you don\'t have enough coins, you only have {self.coins} left!')
 
   def buy_evade(self):
-    self.evade_points += 2
+    if self.coins >= 2:
+      self.evade_points += 2
+      print(f'You have {self.evade_points} evade points!')
+      self.coins -= 2
+      print(f'You still have {self.coins} coin(s)')
+    else:
+      print(f'Sorry, you don\'t have enough coins, you only have {self.coins} left!')
+
 
 
 
@@ -178,34 +215,11 @@ class Zombie(Character):
 
 
 
-class Store():
-  def __init__(self):
-    pass
+# class Store():
+#   def __init__(self):
+#     pass
+#Hmm should my store have it's own class? Since only the hero uses it, does it NEED one?!
 
-  # def buy_items(self):
-  #   item_to_buy = int(input("""
-  #   Which item would you like to buy?
-  #   1.Supertonic - restores you to full health
-  #   2.Armor - protects you 2 health points
-  #   3.Evade - helps you avoid an attack
-  #   4.Leave store"""))
-  #   if item_to_buy == 1:
-  #     buy_supertonic()
-  #   elif item_to_buy == 2:
-  #     buy_armor()
-  #   elif item_to_buy == 3:
-  #     buy_evade()
-  #   elif item_to_buy == 4:
-  #     pass
-
-  # def buy_supertonic(self):
-  #   hero.health = 10
-
-  # def buy_armor(self):
-  #   hero.armor_points = 2
-
-  # def buy_evade(self):
-  #   hero.evade_points += 2
 
 
 
@@ -215,6 +229,9 @@ steven = Medic()
 barbara = Zombie()
 winnie = Shadow()
 sabrina.alive(michael)
+# sabrina.alive(steven)
 
-#entered into our store, able to use the supertonic!
+
+#edited my store so things can only be purchased if the user has enough points to buy them!
+#supertonic and armor are working, still need to make evade points work. able to buy evade points, but not sure how to add the additional percentage to make them work better each time. Still thinking!
 
